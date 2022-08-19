@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> Forecast web application to showcase the weather of a selected city (which uses API to provide both cities and weather).
+> Forecast web application to showcase the weather of a selected city (which uses APIs to provide both cities and weather).
 
 ## Install
 
