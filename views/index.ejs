@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+  <head>
+    <%- include('partials/head.ejs'); %>
+  </head>
+
+  <body>
+
+    <%- include('partials/header.ejs'); %>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form>
+      <select id="countrySelect" name="countrySelect">
+        <option>Select a Country...</option>
+        <% if (countries) { %>
+          <%countries.forEach( (el) => {%>
+            <option><%= el %></option>
+          <%})%>
+        <%}%>
+      </select>
+
+      <select id="citySelect" name="citySelect">
+        <option>Select a City...</option>
+      </select>
+
+      <input type="submit" value="Check Information">
+    </form>
+
+    <%- include('partials/footer.ejs'); %>
+  </body>
+
+  <script>
+    
+  </script>
+
+
+</html>
