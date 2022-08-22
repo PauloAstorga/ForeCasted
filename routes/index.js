@@ -3,7 +3,8 @@ var router = express.Router();
 const https = require('https');
 const axios = require('axios').default;
 
-const url = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid="+process.env.API_KEY;
+var city = "";
+var weatherUrl = "https://api.openweathermap.org/data/2.5/weather";
 const countryUrl = 'https://countriesnow.space/api/v0.1/countries/';
 
 /* GET home page. */
@@ -22,7 +23,7 @@ router.get('/', function(req, res, next) {
     
     country = countryData;
     
-    res.render('index', {title: 'ForecastVIP', countries: country});
+    res.render('index', {title: 'ForeCasted', countries: country});
   })
   .catch( (err) => {
     console.log(err);
@@ -31,7 +32,30 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next){
  
+  city = (req.body.citySelected);
 
+  console.log("CitySelected is :"+city);
+
+  if (city) {
+    axios({
+      method: 'GET',
+      header: {},
+      url: weatherUrl+"?q="+city+"&appid="+process.env.API_KEY,
+      data: {}
+    })
+    .then( (resp) => {
+      var responseData = resp.data;
+  
+      console.log(responseData);
+      
+      res.send({ valid : true, weatherData : responseData });
+    })
+    .catch( (err) => {
+      console.log(err);
+    })
+  }
+
+  else res.send( { valid : false });
 
 });
 

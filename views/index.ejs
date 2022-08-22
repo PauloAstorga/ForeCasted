@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 
   <head>
     <%- include('partials/head.ejs'); %>
@@ -7,33 +7,43 @@
 
   <body>
 
-    <%- include('partials/header.ejs'); %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="container-fluid" style="padding : 0 !important">
 
-    <form>
-      <select id="countrySelect" name="countrySelect">
-        <option>Select a Country...</option>
-        <% if (countries) { %>
-          <%countries.forEach( (el) => {%>
-            <option><%= el %></option>
-          <%})%>
-        <%}%>
-      </select>
+      <%- include('partials/header.ejs'); %>
 
-      <select id="citySelect" name="citySelect">
-        <option>Select a City...</option>
-      </select>
+      <h1 class="title text-center"><%= title %> App</h1>
+  
+      <div class="d-flex align-items-center justify-content-center">
+        <form class="d-flex justify-content-center align-items-center flex-column mt-3 mb-3" method="" action="">
+          <select class="form-select mt-3" id="countrySelect" name="countrySelect" onchange="selector()">
+            <option>Select a Country...</option>
+            <% if (countries) { %>
+              <%countries.forEach( (el) => {%>
+                <option><%= el %></option>
+              <%})%>
+            <%}%>
+          </select>
+    
+          <select class="form-select mt-3" id="citySelect" name="citySelect">
+            <option>Select a City...</option>
+          </select>
+    
+          <input class="btn btn-secondary mt-3" type="" value="Check Information" onclick="getWeather()">
+        </form>
+      </div>
+      
 
-      <input type="submit" value="Check Information">
-    </form>
+      <div name="card-container" id="card-container" class="card-container" class="container-fluid">
+        <%- include('./partials/card.ejs') %>
+      </div>
+  
+      <%- include('partials/footer.ejs'); %>
+    </div>
 
-    <%- include('partials/footer.ejs'); %>
+
   </body>
 
-  <script>
-    
-  </script>
+  
 
 
 </html>
