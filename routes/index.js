@@ -20,10 +20,11 @@ router.get('/', function(req, res, next) {
     var responseData = resp.data.data;
 
     var countryData = responseData.map(item=> item.country);
+    var flagData = responseData.map(item => item.iso2);
     
     country = countryData;
     
-    res.render('index', {title: 'ForeCasted', countries: country});
+    res.render('index', {title: 'ForeCasted', countries: country, flags : flagData});
   })
   .catch( (err) => {
     console.log(err);
@@ -33,14 +34,16 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next){
  
   city = (req.body.citySelected);
+  flag = (req.body.countryFlag);
 
   console.log("CitySelected is :"+city);
+  console.log('Country flag is: "+flag');
 
   if (city) {
     axios({
       method: 'GET',
       header: {},
-      url: weatherUrl+"?q="+city+"&appid="+process.env.API_KEY,
+      url: weatherUrl+"?q="+city+","+flag+"&appid="+process.env.API_KEY,
       data: {}
     })
     .then( (resp) => {

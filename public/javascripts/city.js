@@ -16,7 +16,9 @@ async function getCity(country) {
 }
 
 function selector() {
-    var select = document.getElementById('countrySelect').value;
+    var sel = document.getElementById('countrySelect');
+    var value = sel.value;
+    var select = sel.options[sel.selectedIndex].text;
     getCity(select);
 }
 

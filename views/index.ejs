@@ -17,9 +17,9 @@
         <form class="d-flex justify-content-center align-items-center flex-column mt-3 mb-3" method="" action="">
           <select class="form-select mt-3" id="countrySelect" name="countrySelect" onchange="selector()">
             <option>Select a Country...</option>
-            <% if (countries) { %>
-              <%countries.forEach( (el) => {%>
-                <option><%= el %></option>
+            <% if (countries && flags) { %>
+              <%countries.forEach( (el, index) => {%>
+                <option value="<%= flags[index] %>"><%= el %></option>
               <%})%>
             <%}%>
           </select>
